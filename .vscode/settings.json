@@ -1,0 +1,13 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/JColor-5.5.1-javadoc.jar",
+            "lib/JColor-5.5.1.jar"
+        ]
+    }
+}
