@@ -1,11 +1,50 @@
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Font;
+import javax.imageio.ImageIO;
+
 public class GeradoraDeFigurinhas {
-    
-    void cria() {
+
+    void cria(InputStream inputStream, String nomeArquivo) throws Exception {
         // leitura da imagem
+        // InputStream inputStream = 
+        //         new FileInputStream(new File("entrada/filme.jpg"));
+        //    InputStream inputStream = new URL(
+        //        "https://m.media-amazon.com/images/M/MV5BMTY5MzYzNjc5NV5BMl5BanBnXkFtZTYwNTUyNTc2.jpg").openStream();
+        BufferedImage imagemOriginal = ImageIO.read(inputStream);
 
         // cria nova imagem em memoria com transparência e com tamanho novo
-
+        int largura = imagemOriginal.getWidth();
+        int altura = imagemOriginal.getHeight();
+        int novaAltura = altura + 200;
+        BufferedImage novaImagem = new BufferedImage(largura, novaAltura, BufferedImage.TRANSLUCENT);
         // copiar a imagem original
+        Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
+        graphics.drawImage(imagemOriginal, 0, 0, null);
+
+        // configurar a fonte
+        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64);
+        graphics.setColor(Color.red);
+        graphics.setFont(fonte);
+
+        // escrever uma frase na nova imagem
+        graphics.drawString("TOPZERA", 115, novaAltura - 100);
+
+        // escrever a nova imagem em um arquivo
+        Path caminho = Paths.get("/home/Maverick/Documents/Programação-Casual/ImersaoJava/alura-stickers/saida");
+        if (Files.notExists(caminho)) {
+            File diretorio = new File("saida");
+            diretorio.mkdir();
+
+        }
+        ImageIO.write(novaImagem, "png", new File("saida/" + nomeArquivo));
+
     }
 
 }

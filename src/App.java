@@ -1,4 +1,6 @@
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -29,12 +31,21 @@ public class App {
         System.out.println(listaDeFilmes.size());
         //exibir e manipular os dados
 
-       
+        var geradora = new GeradoraDeFigurinhas();
 
         for (Map<String, String> filme : listaDeFilmes) {
 
-            System.out.println("\u001b[1m"  + filme.get("title"));
-            System.out.println(filme.get("image"));
+
+            String urlImagem = filme.get("image");
+            String titulo = filme.get("title");
+
+            InputStream inputStream = new URL(urlImagem).openStream();
+            String nomeArquivo = titulo + ".png";
+
+           
+            geradora.cria(inputStream, nomeArquivo);
+
+            System.out.println("\u001b[1m"  + titulo);
 
             // Desafio da Imersão em "colorir" o terminal, no titulo do filme também é colocado Bold
             System.out.println("\u001b[37m \u001b[41m Classificação \u001b[m");
