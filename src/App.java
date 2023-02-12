@@ -37,9 +37,11 @@ public class App {
 
 
             String urlImagem = filme.get("image");
+            //Aqui é substituido a string, pois ela estava em miniatura com a Url original
+            String novaUrlImagem = urlImagem.substring(0, 116) + ".jpg";
             String titulo = filme.get("title");
 
-            InputStream inputStream = new URL(urlImagem).openStream();
+            InputStream inputStream = new URL(novaUrlImagem).openStream();
             String nomeArquivo = titulo + ".png";
 
            

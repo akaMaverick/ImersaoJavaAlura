@@ -28,13 +28,16 @@ public class GeradoraDeFigurinhas {
         Graphics2D graphics = (Graphics2D) novaImagem.getGraphics();
         graphics.drawImage(imagemOriginal, 0, 0, null);
 
-        // configurar a fonte
-        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64);
-        graphics.setColor(Color.red);
-        graphics.setFont(fonte);
+        // configurar a fonte (primeiras três linhas é usado o file para pegar uma fonte externa)
+        File arquivoFonte = new File("lib/BungeeShade-Regular.ttf");
+        Font newFont = Font.createFont(Font.TRUETYPE_FONT, arquivoFonte);
+        Font mudanca = newFont.deriveFont(Font.PLAIN, 64);
+        //var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64); Feito durante o curso
+        graphics.setColor(Color.white);
+        graphics.setFont(mudanca);
 
         // escrever uma frase na nova imagem
-        graphics.drawString("TOPZERA", 115, novaAltura - 100);
+        graphics.drawString("TOPZERA", 200, novaAltura - 100);
 
         // escrever a nova imagem em um arquivo
         Path caminho = Paths.get("/home/Maverick/Documents/Programação-Casual/ImersaoJava/alura-stickers/saida");
