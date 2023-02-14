@@ -33,7 +33,7 @@ public class GeradoraDeFigurinhas {
         Font newFont = Font.createFont(Font.TRUETYPE_FONT, arquivoFonte);
         Font mudanca = newFont.deriveFont(Font.PLAIN, 64);
         //var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64); Feito durante o curso
-        graphics.setColor(Color.white);
+        graphics.setColor(Color.green);
         graphics.setFont(mudanca);
 
         // escrever uma frase na nova imagem
